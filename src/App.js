@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
 import Toggle from "./components/Toggle";
+import tw from "tailwind-styled-components";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -12,9 +13,9 @@ function App() {
 
   return (
     //Darkmode Wrapper
-    <div className={`${isDark && "dark"}`}>
+    <DarkModeWrapper dark={isDark}>
       {/* 레이아웃 wrapper */}
-      <div className="flex flex-col min-h-screen h-full w-screen min-w-full dark:bg-slate-800 overflow-x-hidden">
+      <Wrapper>
         <header className="relative text-center h-12 border-b shadow-lg dark:text-white">
           <div>Header</div>
           <div className="flex absolute top-0 right-4">
@@ -40,9 +41,24 @@ function App() {
         <footer className="text-center h-12 border-t shadow-inner dark:text-white">
           Footer
         </footer>
-      </div>
-    </div>
+      </Wrapper>
+    </DarkModeWrapper>
   );
 }
+
+const Wrapper = tw.div`
+flex 
+flex-col 
+min-h-screen 
+h-full 
+w-screen 
+min-w-full 
+dark:bg-slate-800 
+overflow-x-hidden
+`;
+
+const DarkModeWrapper = tw.div`
+${(p) => (p.dark ? "dark" : "")}
+`;
 
 export default App;
