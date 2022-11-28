@@ -1,8 +1,8 @@
 import { useState } from "react";
+import tw from "twin.macro";
 import "./App.css";
 import Card from "./components/Card";
 import Toggle from "./components/Toggle";
-import tw from "tailwind-styled-components";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -13,7 +13,7 @@ function App() {
 
   return (
     //Darkmode Wrapper
-    <DarkModeWrapper dark={isDark}>
+    <DarkModeWrapper className={`${isDark ? "dark" : ""}`}>
       {/* 레이아웃 wrapper */}
       <Wrapper>
         <header className="relative text-center h-12 border-b shadow-lg dark:text-white">
@@ -57,8 +57,6 @@ dark:bg-slate-800
 overflow-x-hidden
 `;
 
-const DarkModeWrapper = tw.div`
-${(p) => (p.dark ? "dark" : "")}
-`;
+const DarkModeWrapper = tw.div``;
 
 export default App;
